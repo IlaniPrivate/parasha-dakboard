@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פרשת השבוע - Weekly Torah Portion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Hebrew', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .current-date {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .parsha-container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .parsha-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .parsha-name {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .parsha-info {
+            text-align: left;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        
+        .illustration {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #34495e;
+        }
+        
+        .key-themes {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .key-themes h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .themes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .theme-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .verse-highlight {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            color: #2d3436;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #e17055;
+        }
+        
+        .verse-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .verse-reference {
+            font-size: 1rem;
+            opacity: 0.8;
+            text-align: left;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .update-info {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .main-title { font-size: 2rem; }
+            .parsha-name { font-size: 2.5rem; }
+            .parsha-header { flex-direction: column; text-align: center; }
+            .illustration { width: 100px; height: 100px; font-size: 2.5rem; }
+            .description { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">פרשת השבוע</h1>
+            <p class="current-date" id="currentDate">שבוע של <span id="hebrewDate"></span></p>
+        </header>
+        
+        <main class="parsha-container">
+            <div class="parsha-header">
+                <div>
+                    <h2 class="parsha-name" id="parshaName">בראשית</h2>
+                    <div class="parsha-info">
+                        <div>ספר: <span id="parshaBook">בראשית</span></div>
+                        <div>פרקים: <span id="parshaChapters">א׳:א׳ - ו׳:ח׳</span></div>
+                    </div>
+                </div>
+                <div class="illustration" id="parshaIllustration">🌍</div>
+            </div>
+            
+            <p class="description" id="parshaDescription">
+                פרשת בראשית פותחת את התורה בסיפור הבריאה המופלא. בששת ימי הבריאה, הקב״ה יוצר את העולם מתוהו ובוהו ועד לגן עדן המושלם. הפרשה מספרת על בריאת האדם הראשון, אדם וחווה, על הנחש הערמומי ועל החטא הראשון שהוביל לגירוש מגן עדן.
+            </p>
+            
+            <div class="verse-highlight">
+                <div class="verse-text" id="keyVerse">"בראשית ברא אלהים את השמים ואת הארץ"</div>
+                <div class="verse-reference" id="verseRef">בראשית א׳:א׳</div>
+            </div>
+            
+            <div class="key-themes">
+                <h3>נושאים מרכזיים</h3>
+                <div class="themes-list" id="themesList">
+                    <div class="theme-item">בריאת העולם</div>
+                    <div class="theme-item">האדם הראשון</div>
+                    <div class="theme-item">גן עדן</div>
+                    <div class="theme-item">החטא הראשון</div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p class="update-info">מתעדכן אוטומטית כל שבוע • עוצב במיוחד עבור DAKboard</p>
+        </footer>
+    </div>
+
+    <script>
+        // Torah portions data with detailed information
+        const parshaData = {
+            "בראשית": {
+                book: "בראשית",
+                chapters: "א׳:א׳ - ו׳:ח׳",
+                emoji: "🌍",
+                description: "פרשת בראשית פותחת את התורה בסיפור הבריאה המופלא. בששת ימי הבריאה, הקב״ה יוצר את העולם מתוהו ובוהו ועד לגן עדן המושלם. הפרשה מספרת על בריאת האדם הראשון, אדם וחווה, על הנחש הערמומי ועל החטא הראשון שהוביל לגירוש מגן עדן.",
+                keyVerse: "בראשית ברא אלהים את השמים ואת הארץ",
+                verseRef: "בראשית א׳:א׳",
+                themes: ["בריאת העולם", "האדם הראשון", "גן עדן", "החטא הראשון"]
+            },
+            "נח": {
+                book: "בראשית",
+                chapters: "ו׳:ט׳ - י״א:ל״ב",
+                emoji: "🌈",
+                description: "פרשת נח מספרת על המבול הגדול שהשמיד את העולם בגלל רשעות האנושות. נח האיש הצדיק נבחר להציל את המין האנושי ואת כל בעלי החיים בתיבה. לאחר המבול, הקב״ה נותן לנח את הברית עם סימן הקשת בענן, ומבטיח לא להביא עוד מבול על העולם.",
+                keyVerse: "את קשתי נתתי בענן והיתה לאות ברית ביני ובין הארץ",
+                verseRef: "בראשית ט׳:י״ג",
+                themes: ["המבול", "תיבת נח", "הברית", "התחדשות העולם"]
+            },
+            "לך לך": {
+                book: "בראשית",
+                chapters: "י״ב:א׳ - י״ז:כ״ז",
+                emoji: "🌟",
+                description: "פרשת לך לך מתחילה עם הקריאה הגדולה לאברהם לצאת מארצו ומולדתו אל הארץ שיראה לו הקב״ה. הפרשה מספרת על התחלת הדרך של אברהם אבינו, על ברית בין הבתרים, ועל בריתו של אברהם עם הקב״ה שכוללת מצוות המילה.",
+                keyVerse: "לך לך מארצך וממולדתך ומבית אביך אל הארץ אשר אראך",
+                verseRef: "בראשית י״ב:א׳",
+                themes: ["קריאת אברהם", "ברית בין הבתרים", "המילה", "התחלה חדשה"]
+            },
+            "וירא": {
+                book: "בראשית",
+                chapters: "י״ח:א׳ - כ״ב:כ״ד",
+                emoji: "👥",
+                description: "פרשת וירא מציגה את אברהם כמארח הגדול המקבל את המלאכים בחום. הפרשה כוללת את הבשורה על לידת יצחק, חורבן סדום ועמורה, ואת המבחן הגדול - עקידת יצחק, שבו אברהם מוכן להקריב את בנו היחיד למען הקב״ה.",
+                keyVerse: "הכנס נא אורחים וירא ה׳ אליו באלני ממרא",
+                verseRef: "בראשית י״ח:א׳",
+                themes: ["הכנסת אורחים", "לידת יצחק", "חורבן סדום", "עקידת יצחק"]
+            },
+            // Add more parsha data as needed...
+        };
+
+        // Hebrew months for date display
+        const hebrewMonths = {
+            1: "תשרי", 2: "חשון", 3: "כסלו", 4: "טבת", 5: "שבט", 6: "אדר",
+            7: "ניסן", 8: "אייר", 9: "סיון", 10: "תמוז", 11: "אב", 12: "אלול"
+        };
+
+        function getWeekOfYear(date) {
+            const start = new Date(date.getFullYear(), 0, 1);
+            const diff = date - start + (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
+            const oneWeek = 1000 * 60 * 60 * 24 * 7;
+            return Math.floor(diff / oneWeek);
+        }
+
+        function getCurrentParsha() {
+            const parshaNames = ["בראשית", "נח", "לך לך", "וירא", "חיי שרה", "תולדות", "ויצא", "וישלח", "וישב", "מקץ", "ויגש", "ויחי"];
+            const weekNumber = getWeekOfYear(new Date());
+            const parshaIndex = weekNumber % parshaNames.length;
+            return parshaNames[parshaIndex];
+        }
+
+        function updateParshaDisplay() {
+            const currentParsha = getCurrentParsha();
+            const parshaInfo = parshaData[currentParsha];
+            
+            if (parshaInfo) {
+                document.getElementById('parshaName').textContent = currentParsha;
+                document.getElementById('parshaBook').textContent = parshaInfo.book;
+                document.getElementById('parshaChapters').textContent = parshaInfo.chapters;
+                document.getElementById('parshaIllustration').textContent = parshaInfo.emoji;
+                document.getElementById('parshaDescription').textContent = parshaInfo.description;
+                document.getElementById('keyVerse').textContent = parshaInfo.keyVerse;
+                document.getElementById('verseRef').textContent = parshaInfo.verseRef;
+                
+                const themesList = document.getElementById('themesList');
+                themesList.innerHTML = '';
+                parshaInfo.themes.forEach(theme => {
+                    const themeDiv = document.createElement('div');
+                    themeDiv.className = 'theme-item';
+                    themeDiv.textContent = theme;
+                    themesList.appendChild(themeDiv);
+                });
+            }
+        }
+
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const hebrewDate = now.toLocaleDateString('he-IL', options);
+            document.getElementById('hebrewDate').textContent = hebrewDate;
+        }
+
+        // Initialize the display
+        updateDate();
+        updateParshaDisplay();
+
+        // Update every hour to ensure accuracy
+        setInterval(() => {
+            updateDate();
+            updateParshaDisplay();
+        }, 3600000);
+
+        // Add subtle animation to themes
+        setTimeout(() => {
+            const themes = document.querySelectorAll('.theme-item');
+            themes.forEach((theme, index) => {
+                theme.style.animation = `float ${6 + index * 0.5}s ease-in-out infinite`;
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
